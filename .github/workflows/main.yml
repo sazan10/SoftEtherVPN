@@ -17,6 +17,6 @@ jobs:
     - name: Build from source
       run: |
         git submodule init && git submodule update
-        ./configure
+        sudo -S ./configure
         make -C build
         make -C build install
