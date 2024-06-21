@@ -11,11 +11,12 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: 4fe53529311ebcb61f8b41aecb79304619c7cfac
-
-    - name: Build HandBrake Linux
+    - name: Initial Setups
+      run: | 
+        sudo apt -y install cmake gcc g++ make pkgconf libncurses5-dev libssl-dev libsodium-dev libreadline-dev zlib1g-dev
+    - name: Build from source
       run: |
-        git submodule update --init --recursive
-        mkdir build
-        cd build
-        cmake ..
-        make
+        git submodule init && git submodule update
+        ./configure
+        make -C build
+        make -C build install
